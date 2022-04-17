@@ -1,3 +1,5 @@
+import './category.scss';
+
 const App = () => {
     const categories = [
         {
@@ -31,8 +33,8 @@ const App = () => {
         <div className="category-container">
             {
                 categories.map(({ id, title }) => (
-                    <div className="category">
-                        <div className="background-img"></div>
+                    <div key={id} className="category">
+                        <div className="background-image"></div>
                         <div className="category-body">
                             <h2>{title}</h2>
                             <p>Shop Now</p>
