@@ -56,7 +56,7 @@ const SignUpForm = () => {
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
                 <FormInputField
-                    label="DisplayName"
+                    label="Display Name"
                     type="text"
                     required
                     onChange={handleChange}
