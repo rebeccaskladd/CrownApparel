@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 import { UserProvider } from './contexts/User';
+import { ProductsProvider } from './contexts/Products';
 
 import './index.scss';
 
@@ -13,7 +14,9 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <UserProvider>
-                <App />
+                <ProductsProvider>
+                    <App />
+                </ProductsProvider>
             </UserProvider>
         </BrowserRouter>
     </React.StrictMode>
