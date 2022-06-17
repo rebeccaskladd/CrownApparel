@@ -5,7 +5,7 @@ import { CartContext } from "../../contexts/Cart";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 
 const Checkout = () => {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, totalPrice } = useContext(CartContext);
 
     return (
         <div>
@@ -27,6 +27,8 @@ const Checkout = () => {
                     }
                 </tbody>
             </table>
+
+            <span>Total: ${totalPrice}</span>
         </div>
     )
 };
