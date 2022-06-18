@@ -21,16 +21,10 @@ const clearItem = (cartItems, product) => {
 }
 
 const removeItem = (cartItems, product) => {
-    const item = cartItems.find(
-        (cartItem) => cartItem.id === product.id
-    );
-
-    if (item) {
-        return cartItems.map((cartItem) => cartItem.id === product.id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        ).filter(item => item.quantity > 0);
-    }
+    return cartItems.map((cartItem) => cartItem.id === product.id
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    ).filter(item => item.quantity > 0);
 }
 
 export const CartContext = createContext({
@@ -54,7 +48,9 @@ export const CartProvider = ({ children }) => {
         const count = cartItems.reduce(
             (total, item) => total + item.quantity, 0);
         setItemCount(count);
+    }, [cartItems]);
 
+    useEffect(() => {
         const totalCost = cartItems.reduce(
             (total, item) => total + (item.price * item.quantity), 0);
         setTotalPrice(totalCost);
