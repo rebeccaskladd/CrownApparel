@@ -16,19 +16,21 @@ const addItem = (cartItems, product) => {
     return [...cartItems, { ...product, quantity: 1 }];
 }
 
-const removeItem = (cartItems, product) => {
+const clearItem = (cartItems, product) => {
     return cartItems.filter(cartItem => cartItem.id !== product.id);
 }
 
-const changeQuantity = (cartItems, product, action) => {
-    return cartItems.map((cartItem) => cartItem.id === product.id
-        ? (
-            action === 'incr'
-                ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                : { ...cartItem, quantity: cartItem.quantity - 1 }
-        ) : cartItem
+const removeItem = (cartItems, product) => {
+    const item = cartItems.find(
+        (cartItem) => cartItem.id === product.id
+    );
 
-    ).filter(item => item.quantity > 0);
+    if (item) {
+        return cartItems.map((cartItem) => cartItem.id === product.id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        ).filter(item => item.quantity > 0);
+    }
 }
 
 export const CartContext = createContext({
@@ -38,7 +40,7 @@ export const CartContext = createContext({
     addItemToCart: () => { },
     itemCount: 0,
     removeItemFromCart: () => { },
-    changeItemQuantity: () => { },
+    clearItemFromCart: () => { },
     totalPrice: 0
 });
 
@@ -66,11 +68,11 @@ export const CartProvider = ({ children }) => {
         setCartItems(removeItem(cartItems, product));
     }
 
-    const changeItemQuantity = (product, action) => {
-        setCartItems(changeQuantity(cartItems, product, action));
+    const clearItemFromCart = (product) => {
+        setCartItems(clearItem(cartItems, product));
     }
 
-    const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, itemCount, removeItemFromCart, changeItemQuantity, totalPrice };
+    const value = { isCartOpen, setIsCartOpen, cartItems, addItemToCart, itemCount, removeItemFromCart, clearItemFromCart, totalPrice };
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 };

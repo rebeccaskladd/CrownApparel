@@ -2,29 +2,32 @@ import { useContext } from "react";
 
 import { CartContext } from "../../contexts/Cart";
 
+import './CheckoutItem.scss';
+
 const CheckoutItem = ({ item }) => {
     const { name, imageUrl, price, quantity } = item;
-    const { removeItemFromCart, changeItemQuantity } = useContext(CartContext);
+    const { addItemToCart, removeItemFromCart, clearItemFromCart } = useContext(CartContext);
 
-    const removeProductFromCart = () => removeItemFromCart(item);
-    const changeProductQuantity = (action) => changeItemQuantity(item, action);
+    const addItemHandler = () => addItemToCart(item);
+    const removeItemHandler = () => removeItemFromCart(item);
+    const clearItemHandler = () => clearItemFromCart(item);
 
     return (
-        <tr>
-            <td>
+        <div className="item-container">
+            <div className="img-container">
                 <img src={imageUrl} alt={name} />
-            </td>
-            <td>{name}</td>
-            <td>
-                <span onClick={() => changeProductQuantity('decr')}>&lt;</span>
-                <span>{quantity}</span>
-                <span onClick={() => changeProductQuantity('incr')}>&gt;</span>
-            </td>
-            <td>${price}</td>
-            <td>
-                <span onClick={removeProductFromCart}>X</span>
-            </td>
-        </tr>
+            </div>
+            <span className="item-field">{name}</span>
+
+            <span className="item-field quantity">
+                <div className="arrow" onClick={removeItemHandler}>&#10094;</div>
+                <span className="value">{quantity}</span>
+                <div className="arrow" onClick={addItemHandler}>&#10095;</div>
+            </span>
+
+            <span className="item-field">${price}</span>
+            <div className="remove-btn" onClick={clearItemHandler}>&#10005;</div>
+        </div>
     )
 };
 
