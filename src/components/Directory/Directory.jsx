@@ -3,7 +3,7 @@ import CategoryItem from './../CategoryItem/CategoryItem';
 
 const Directory = ({ categories }) => {
     return (
-        <div className="category-container">
+        <div className="directory-container">
             {
                 categories.map((category) => (
                     <CategoryItem key={category.id} category={category} />
