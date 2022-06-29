@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-import { getCategoriesAndDocuments } from "../utilities/firebase/firebase.js";
+import { getCategoriesAndDocuments } from "../utilities/firebase/firebase";
 
 export const CategoriesContext = createContext({
     categoriesMap: {}
@@ -16,7 +16,7 @@ export const CategoriesProvider = ({ children }) => {
         }
 
         getCategoriesMap();
-    });
+    }, []);
 
     const value = { categoriesMap };
 
