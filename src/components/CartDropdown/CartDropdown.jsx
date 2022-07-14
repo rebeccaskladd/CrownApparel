@@ -5,7 +5,12 @@ import Button from '../Button/Button';
 import CartItem from '../CartItem/CartItem';
 
 import { CartContext } from '../../contexts/Cart';
-import { CartDropdownContainer, EmptyMessage, CartItems } from './CartDropdown.styles.jsx';
+
+import {
+    CartDropdownContainer,
+    EmptyMessage,
+    CartItems
+} from './CartDropdown.styles.jsx';
 
 const CartDropdown = () => {
     const { cartItems } = useContext(CartContext);

@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+
 import {
     getAuth,
     signInWithPopup,
@@ -9,6 +10,7 @@ import {
     signOut,
     onAuthStateChanged
 } from 'firebase/auth';
+
 import {
     getFirestore,
     doc,
@@ -17,7 +19,6 @@ import {
     collection,
     writeBatch,
     query,
-    gtDocs,
     getDocs
 } from 'firebase/firestore';
 
@@ -32,7 +33,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
@@ -54,7 +55,6 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     });
 
     await batch.commit();
-    console.log('done');
 };
 
 export const getCategoriesAndDocuments = async () => {

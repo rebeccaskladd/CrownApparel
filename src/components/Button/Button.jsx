@@ -1,4 +1,8 @@
-import { BaseButton, GoogleButton, InvertedButton } from './Button.styles';
+import {
+    BaseButton,
+    GoogleButton,
+    InvertedButton
+} from './Button.styles';
 
 const getButton = (buttonType) => {
     switch (buttonType) {

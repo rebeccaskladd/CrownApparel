@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 
 export const NavigationContainer = styled.div`
@@ -8,12 +9,12 @@ export const NavigationContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-`
+`;
 
 export const LogoContainer = styled(Link)`
     width: 70px;
     padding: 25px;
-`
+`;
 
 export const NavLinks = styled.div`
     width: 50%;
@@ -21,10 +22,10 @@ export const NavLinks = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-`
+`;
 
 export const NavLink = styled(Link)`
     margin: 10px 15px;
     cursor: pointer;
     text-transform: uppercase;
-`
+`;

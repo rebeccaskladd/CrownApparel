@@ -23,7 +23,7 @@ export const BaseButton = styled.button`
         color: black;
         border: 1px solid black;
     }
-`
+`;
 
 export const GoogleButton = styled(BaseButton)`
     background-color: #4285f4;
@@ -33,7 +33,7 @@ export const GoogleButton = styled(BaseButton)`
         background-color: #357ae8;
         border: none;
     }
-`
+`;
 
 export const InvertedButton = styled(BaseButton)`
     background-color: white;
@@ -45,4 +45,4 @@ export const InvertedButton = styled(BaseButton)`
         color: white;
         border: none;
     }
-`
+`;
