@@ -1,14 +1,13 @@
-import './FormInputField.scss';
+import { FormInputLabel, Input, Group } from './FormInputField.styles.jsx';
 
 const FormInputField = ({ label, ...inputProps }) => {
     return (
-        <div className="form-group">
-            <input
-                className="form-input"
-                {...inputProps}
-            />
-            <label className={`${inputProps.value.length ? 'raise' : ''} form-input-label`}>{label}</label>
-        </div>
+        <Group>
+            <Input {...inputProps} />
+            <FormInputLabel raise={inputProps.value.length}>
+                {label}
+            </FormInputLabel>
+        </Group>
     )
 }
 
