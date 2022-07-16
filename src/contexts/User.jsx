@@ -11,9 +11,11 @@ export const UserContext = createContext({
     setCurrentUser: () => null
 });
 
+const INITIAL_STATE = {
+    currentUser: null
+};
+
 const userReducer = (state, action) => {
-    console.log('dispatched');
-    console.log(action);
     const { type, payload } = action;
 
     switch (type) {
@@ -23,17 +25,12 @@ const userReducer = (state, action) => {
                 currentUser: payload
             }
         default:
-            throw new Error(`Unhandled type ${type} in userReducer`);
+            throw new Error(`Unhandled type of ${type} in userReducer`);
     }
-};
-
-const INITIAL_STATE = {
-    currentUser: null
 };
 
 export const UserProvider = ({ children }) => {
     const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
-    console.log(currentUser);
 
     const setCurrentUser = (user) => {
         dispatch({ type: 'SET_CURRENT_USER', payload: user });
