@@ -14,12 +14,14 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import { CategoryContainer, Title } from './Category.styles.jsx';
 
 const Category = () => {
+    console.log('render/re-rendering category component');
     const categoriesMap = useSelector(selectCategoriesMap);
 
     const { category } = useParams();
     const [products, setProducts] = useState(categoriesMap[category]);
 
     useEffect(() => {
+        console.log('effect fired calling setProducts');
         setProducts(categoriesMap[category]);
     }, [category, categoriesMap]);
 
