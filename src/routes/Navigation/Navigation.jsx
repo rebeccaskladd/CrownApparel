@@ -1,9 +1,10 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { Outlet } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
+
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
-import { CartContext } from '../../contexts/Cart';
 import { signOutUser } from '../../utilities/firebase/firebase';
 import { selectCurrentUser } from '../../store/user/user.selector';
 
@@ -19,13 +20,7 @@ import {
 
 const Navigation = () => {
     const currentUser = useSelector(selectCurrentUser);
-    const { isCartOpen, setIsCartOpen } = useContext(CartContext);
-
-    const signOutHandler = async () => {
-        await signOutUser();
-    }
-
-    const toggleDropdown = () => setIsCartOpen(!isCartOpen);
+    const isCartOpen = useSelector(selectIsCartOpen);
 
     return (
         <Fragment>
@@ -43,7 +38,7 @@ const Navigation = () => {
                     {
                         currentUser ?
                             (
-                                <NavLink as="span" onClick={signOutHandler}>Sign Out</NavLink>
+                                <NavLink as="span" onClick={signOutUser}>Sign Out</NavLink>
                             ) :
                             (
                                 <NavLink to="/auth">
@@ -52,9 +47,7 @@ const Navigation = () => {
                             )
 
                     }
-                    <span onClick={toggleDropdown}>
-                        <CartIcon />
-                    </span>
+                    <CartIcon />
                 </NavLinks>
                 {isCartOpen && <CartDropdown />}
             </NavigationContainer>
