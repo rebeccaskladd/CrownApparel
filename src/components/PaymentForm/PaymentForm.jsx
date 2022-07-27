@@ -1,12 +1,20 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectTotalPrice } from '../../store/cart/cart.selector';
+import { selectCurrentUser } from '../../store/user/user.selector';
+
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import Button from '../Button/Button';
-
-import { PaymentFormContainer, FormContainer } from './PaymentForm.styles';
+import { PaymentFormContainer, FormContainer, PaymentButton } from './PaymentForm.styles';
 
 const PaymentForm = () => {
     const stripe = useStripe();
     const elements = useElements();
+
+    const totalPrice = useSelector(selectTotalPrice);
+    const currentUser = useSelector(selectCurrentUser);
+    const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
     const paymentHandler = async (event) => {
         event.preventDefault();
@@ -15,12 +23,14 @@ const PaymentForm = () => {
             return;
         }
 
+        setIsProcessingPayment(true);
+
         const response = await fetch('/.netlify/functions/create-payment-intent', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ amount: 10000 })
+            body: JSON.stringify({ amount: totalPrice * 100 })
         }).then(res => res.json());
 
         const { paymentIntent: { client_secret } } = response;
@@ -29,13 +39,15 @@ const PaymentForm = () => {
             payment_method: {
                 card: elements.getElement(CardElement),
                 billing_details: {
-                    name: 'Test Test'
+                    name: currentUser ? currentUser.displayName : 'Guest'
                 }
             }
         });
 
+        setIsProcessingPayment(false);
+
         if (paymentResult.error) {
-            alert(paymentResult.error)
+            alert(paymentResult.error);
         }
         else {
             alert('Payment successful');
@@ -47,7 +59,10 @@ const PaymentForm = () => {
             <FormContainer onSubmit={paymentHandler}>
                 <h2>Credit Card Payment</h2>
                 <CardElement />
-                <Button buttonType="inverted">Pay Now</Button>
+                <PaymentButton
+                    isLoading={isProcessingPayment}
+                    buttonType="inverted"
+                >Pay Now</PaymentButton>
             </FormContainer>
         </PaymentFormContainer>
     )
