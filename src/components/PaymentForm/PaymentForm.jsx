@@ -46,7 +46,7 @@ const PaymentForm = () => {
             }
         });
 
-        console.log(paymentIntent);
+        console.log(paymentResult);
 
         setIsProcessingPayment(false);
 
