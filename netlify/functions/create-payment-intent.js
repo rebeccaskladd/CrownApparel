@@ -11,7 +11,7 @@ exports.handler = async (event) => {
         });
 
         return {
-            statusCode: '200',
+            statusCode: 200,
             body: JSON.stringify({ paymentIntent })
         };
     }
@@ -23,4 +23,4 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error })
         };
     }
-}
+};
