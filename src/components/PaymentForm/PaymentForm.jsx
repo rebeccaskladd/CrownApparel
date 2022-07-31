@@ -31,7 +31,9 @@ const PaymentForm = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ amount: totalPrice * 100 })
-        }).then(res => console.log(res.json()));
+        }).then(res => res.json());
+
+        console.log(response);
 
         const { paymentIntent: { client_secret } } = response;
 
@@ -43,6 +45,8 @@ const PaymentForm = () => {
                 }
             }
         });
+
+        console.log(paymentIntent);
 
         setIsProcessingPayment(false);
 
