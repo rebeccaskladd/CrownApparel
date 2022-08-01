@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
+import { ReactComponent as ShoppingSvg } from '../../assets/shopping-bag.svg';
+
 export const CheckoutContainer = styled.div`
     width: 55%;
-    min-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,4 +31,23 @@ export const Total = styled.span`
     margin-top: 30px;
     margin-left: auto;
     font-size: 36px;
+`;
+
+export const EmptyCart = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    padding: 40px 100px;
+`;
+
+export const ShoppingIcon = styled(ShoppingSvg)`
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+`;
+
+export const EmptyMessage = styled.span`
+    font-size: 25px;
+    margin-bottom: 15px;
 `;
