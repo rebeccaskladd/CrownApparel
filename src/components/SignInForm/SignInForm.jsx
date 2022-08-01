@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import FormInputField from '../FormInputField/FormInputField';
 import Button from '../Button/Button';
@@ -14,20 +15,16 @@ const defaultFormFields = {
 
 const SignInForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
-
-    const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            dispatch(emailSignInStart(email, password));
-            resetFormFields();
+            dispatch(emailSignInStart(email, password, navigate));
         }
         catch (error) {
             if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
@@ -43,7 +40,7 @@ const SignInForm = () => {
     };
 
     const signInWithGoogle = async () => {
-        dispatch(googleSignInStart());
+        dispatch(googleSignInStart(navigate));
     }
 
     return (

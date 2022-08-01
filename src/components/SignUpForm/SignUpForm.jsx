@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
+import { useNavigate } from 'react-router-dom';
 
 import FormInputField from '../FormInputField/FormInputField';
 import Button from '../Button/Button';
@@ -16,6 +17,7 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
@@ -33,8 +35,8 @@ const SignUpForm = () => {
         }
 
         try {
-            dispatch(signUpStart(email, password, displayName));
-            resetFormFields();
+            dispatch(signUpStart(email, password, displayName, navigate));
+            //resetFormFields();
         }
         catch (error) {
             if (error.code === 'auth/email-already-in-use') {

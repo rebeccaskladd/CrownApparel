@@ -36,9 +36,6 @@ const Navigation = () => {
                     <NavLink to="/shop">
                         Shop
                     </NavLink>
-                    <NavLink to="/contact">
-                        Contact
-                    </NavLink>
                     {
                         currentUser ?
                             (
