@@ -51,3 +51,24 @@ export const EmptyMessage = styled.span`
     font-size: 25px;
     margin-bottom: 15px;
 `;
+
+export const InfoContainer = styled.div`
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+    margin: 45px 0 0;
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    span {
+        font-size: 17px;
+    }
+`;
+
+export const CardNumberInfo = styled.span`
+    color: rgb(84,105,212);
+    font-weight: 600;
+`

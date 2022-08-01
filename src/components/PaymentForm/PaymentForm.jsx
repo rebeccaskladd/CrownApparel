@@ -6,7 +6,11 @@ import { selectCurrentUser } from '../../store/user/user.selector';
 
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import { PaymentFormContainer, FormContainer, PaymentButton } from './PaymentForm.styles';
+import {
+    PaymentFormContainer,
+    FormContainer,
+    PaymentButton,
+} from './PaymentForm.styles';
 
 const PaymentForm = () => {
     const stripe = useStripe();
@@ -64,7 +68,7 @@ const PaymentForm = () => {
                     buttonType="inverted"
                 >Pay Now</PaymentButton>
             </FormContainer>
-        </PaymentFormContainer>
+        </PaymentFormContainer >
     )
 };
 
