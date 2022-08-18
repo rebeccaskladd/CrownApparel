@@ -1,5 +1,4 @@
 import { CATEGORIES_ACTION_TYPES } from "./categories.types"
-import { getCategoriesAndDocuments } from "../../utilities/firebase/firebase";
 
 export const fetchCategoriesStart = () => {
     return { type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START };
