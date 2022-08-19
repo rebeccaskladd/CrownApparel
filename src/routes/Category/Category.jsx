@@ -1,7 +1,6 @@
 import {
     useState,
     useEffect,
-    Fragment
 } from 'react';
 
 import { useParams } from 'react-router-dom';
@@ -12,7 +11,7 @@ import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/cate
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Spinner from '../../components/Spinner/Spinner';
 
-import { CategoryContainer, Title } from './Category.styles.jsx';
+import { CategoryContainer, CategoryProductContainer, Title } from './Category.styles.jsx';
 
 const Category = () => {
     const { category } = useParams();
@@ -25,20 +24,20 @@ const Category = () => {
     }, [category, categoriesMap]);
 
     return (
-        <Fragment>
+        <CategoryContainer>
             <Title>{category}</Title>
             {
                 isLoading ?
                     <Spinner /> :
-                    <CategoryContainer>
+                    <CategoryProductContainer>
                         {
                             products && products.map(product => (
                                 <ProductCard key={product.id} product={product} />
                             ))
                         }
-                    </CategoryContainer>
+                    </CategoryProductContainer>
             }
-        </Fragment>
+        </CategoryContainer>
     )
 };
 
